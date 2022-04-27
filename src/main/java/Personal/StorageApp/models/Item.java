@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Item {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     private String name;
     private String desc;
@@ -43,7 +43,7 @@ public class Item {
         return Objects.hash(id, name, desc, loc, exp);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
