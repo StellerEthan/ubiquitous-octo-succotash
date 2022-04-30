@@ -1,8 +1,7 @@
 package Personal.StorageApp.models.data;
 
 import Personal.StorageApp.models.Item;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends CrudRepository<Item, Integer> {
-
+public interface ItemRepository extends JpaRepository<Item, Integer> {
 }

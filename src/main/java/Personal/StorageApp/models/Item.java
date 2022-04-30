@@ -1,9 +1,8 @@
 package Personal.StorageApp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+
+import java.util.Calendar;
 import java.util.Objects;
 
 @Entity
@@ -12,18 +11,22 @@ public class Item {
     @GeneratedValue
     private Long id;
 
-    private String name;
-    private String desc;
-    private String loc;
-    private Date exp;
+    private String itemName;
 
-    private Item(){};
+    private String itemDesc;
 
-    private Item(String name, String desc, String loc, Date exp){
-        this.name = name;
-        this.desc = desc;
-        this.loc = loc;
-        this.exp = exp;
+    private String itemLoc;
+
+    @Temporal(TemporalType.DATE)
+    private Calendar itemExp;
+
+    public Item(){};
+
+    public Item(String name, String desc, String itemLoc, Calendar itemExp){
+        this.itemName = name;
+        this.itemDesc = desc;
+        this.itemLoc = itemLoc;
+        this.itemExp = itemExp;
     }
 
     @Override
@@ -32,15 +35,15 @@ public class Item {
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
         return Objects.equals(id, item.id) &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(desc, item.desc) &&
-                Objects.equals(loc, item.loc)&&
-                Objects.equals(exp, item.exp);
+                Objects.equals(itemName, item.itemName) &&
+                Objects.equals(itemDesc, item.itemDesc) &&
+                Objects.equals(itemLoc, item.itemLoc)&&
+                Objects.equals(itemExp, item.itemExp);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(id, name, desc, loc, exp);
+        return Objects.hash(id, itemName, itemDesc, itemLoc, itemExp);
     }
 
     public Long getId() {
@@ -48,44 +51,45 @@ public class Item {
     }
 
     public String getName() {
-        return name;
+        return itemName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.itemName = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getItemDesc() {
+        return itemDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setItemDesc(String itemDesc) {
+        this.itemDesc = itemDesc;
     }
 
-    public String getLoc() {
-        return loc;
+    public String getItemLoc() {
+        return itemLoc;
     }
 
-    public void setLoc(String loc) {
-        this.loc = loc;
+    public void setItemLoc(String itemLoc) {
+        this.itemLoc = itemLoc;
     }
 
-    public Date getExp() {
-        return exp;
+    public Calendar getItemExp() {
+        return itemExp;
     }
 
-    public void setExp(Date exp) {
-        this.exp = exp;
+    public void setExp(Calendar calendar) {
+        this.itemExp = itemExp;
     }
 
     @Override
     public String toString(){
         return "Item{" +
                 "id=" + id +
-                ", desc='" + desc + '\'' +
-                ", loc='" + loc + '\'' +
-                ", exp='" + exp + '\'' +
+                ", itemDesc='" + itemDesc + '\'' +
+                ", itemLoc='" + itemLoc + '\'' +
+                ", itemExp='" + itemExp + '\'' +
             '}';
     }
+
 }
