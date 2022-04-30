@@ -23,19 +23,10 @@ public class StorageAppApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Item item = new Item();
-		item.setName("Ball");
-		item.setItemDesc("Round ball");
-		item.setExp(new GregorianCalendar(2023, 10, 30));
-		item.setItemLoc("Garage");
-		itemRepository.save(item);
 
-		Item item2 = new Item();
-		item.setName("Ice Cubes");
-		item.setItemDesc("Frozen Cube of Water");
-		item.setExp(new GregorianCalendar(2039, 10, 30));
-		item.setItemLoc("Freezer");
-		itemRepository.save(item2);
+		itemRepository.save(new Item("Ball","Round Ball","Garage", new GregorianCalendar(2025,01,24)));
+
+		itemRepository.save(new Item("name","test","freezer", new GregorianCalendar(2023,10,30)));
 	}
 
 }
