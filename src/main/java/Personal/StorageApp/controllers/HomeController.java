@@ -15,9 +15,9 @@ public class HomeController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping(value = "/")
+    @GetMapping
     public List<Item> getAllItems(){
-        return (List<Item>) itemRepository.findAll();
+        return itemRepository.findAll();
     }
 
 }
