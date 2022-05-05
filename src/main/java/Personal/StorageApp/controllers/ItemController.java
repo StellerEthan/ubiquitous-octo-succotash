@@ -19,8 +19,10 @@ public class ItemController {
         return itemRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public Item createItem(@RequestBody Item item){
+        System.out.println(item);
         return itemRepository.save(item);
     }
+
 }
