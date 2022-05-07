@@ -1,5 +1,7 @@
 package Personal.StorageApp.models;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
 
 import java.util.Calendar;
@@ -7,16 +9,26 @@ import java.util.Objects;
 
 @Entity
 public class Item {
+
     @Id
     @GeneratedValue
+    @Column
     private Long id;
 
+    @Column
+    @NotNull
     private String itemName;
 
+    @Column
+    @NotNull
     private String itemDesc;
 
+    @Column
+    @NotNull
     private String itemLoc;
 
+    @Column
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Calendar itemExp;
 
@@ -83,14 +95,14 @@ public class Item {
         this.itemExp = itemExp;
     }
 
-//    @Override
-//    public String toString(){
-//        return "Item{" +
-//                "id=" + id +
-//                ", itemDesc='" + itemDesc + '\'' +
-//                ", itemLoc='" + itemLoc + '\'' +
-//                ", itemExp='" + itemExp + '\'' +
-//            '}';
-//    }
+    @Override
+    public String toString(){
+        return "Item{" +
+                "id=" + id +
+                ", itemDesc='" + itemDesc + '\'' +
+                ", itemLoc='" + itemLoc + '\'' +
+                ", itemExp='" + itemExp + '\'' +
+            '}';
+    }
 
 }

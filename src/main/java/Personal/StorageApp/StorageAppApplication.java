@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.GregorianCalendar;
 
 @SpringBootApplication
-public class StorageAppApplication implements CommandLineRunner {
+public class StorageAppApplication {
 
 	public static void main(String[] args) {
 
@@ -19,14 +19,5 @@ public class StorageAppApplication implements CommandLineRunner {
 
 	@Autowired
 	private ItemRepository itemRepository;
-
-
-	@Override
-	public void run(String... args) throws Exception {
-
-		itemRepository.save(new Item("Ball","Round Ball","Garage", new GregorianCalendar(2025,01,24)));
-
-		itemRepository.save(new Item("name","test","freezer", new GregorianCalendar(2023,10,30)));
-	}
 
 }

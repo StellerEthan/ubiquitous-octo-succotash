@@ -11,6 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("api/items")
 public class ItemController {
+
     @Autowired
     private ItemRepository itemRepository;
 
@@ -21,8 +22,9 @@ public class ItemController {
 
     @PostMapping(consumes = "application/json")
     public Item createItem(@RequestBody Item item){
-        System.out.println(item);
-        return itemRepository.save(item);
+        System.out.println("Json received: "+item.toString());
+        itemRepository.save(item);
+        return null;
     }
 
 }
