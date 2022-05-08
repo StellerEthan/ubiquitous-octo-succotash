@@ -3,6 +3,8 @@ package Personal.StorageApp.controllers;
 import Personal.StorageApp.models.Item;
 import Personal.StorageApp.models.data.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,14 @@ public class ItemController {
         System.out.println("Json received: "+item.toString());
         itemRepository.save(item);
         return null;
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Item> getItemByID(@PathVariable long id){
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Item does not exist with ID: " + id));
+                return ResponseEntity.ok(item);
     }
 
 }
