@@ -4,6 +4,7 @@ import Personal.StorageApp.models.Item;
 import Personal.StorageApp.models.data.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,6 @@ public class ItemController {
 
     @PostMapping(consumes = "application/json")
     public Item createItem(@RequestBody Item item){
-        System.out.println("Json received: "+item.toString());
         itemRepository.save(item);
         return null;
     }
@@ -37,4 +37,26 @@ public class ItemController {
                 return ResponseEntity.ok(item);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Item> updateItem(@PathVariable long id,@RequestBody Item itemDetails){
+        Item updateItem = itemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Item not found with ID: "+id));
+        updateItem.setItemName(itemDetails.getItemName());
+        updateItem.setItemDesc(itemDetails.getItemDesc());
+        updateItem.setItemLoc(itemDetails.getItemLoc());
+        updateItem.setItemExp(itemDetails.getItemExp());
+
+        itemRepository.save(updateItem);
+
+        return ResponseEntity.ok(updateItem);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteItem(@PathVariable long id){
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Item not found with ID: "+id));
+        itemRepository.delete(item);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

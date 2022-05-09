@@ -71,9 +71,7 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public String getItemDesc() {
-        return itemDesc;
-    }
+    public String getItemDesc() {return itemDesc;}
 
     public void setItemDesc(String itemDesc) {
         this.itemDesc = itemDesc;
