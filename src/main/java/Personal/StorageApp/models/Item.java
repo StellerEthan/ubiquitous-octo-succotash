@@ -42,22 +42,22 @@ public class Item {
         this.itemExp = itemExp;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Item item = (Item) o;
-//        return Objects.equals(id, item.id) &&
-//                Objects.equals(itemName, item.itemName) &&
-//                Objects.equals(itemDesc, item.itemDesc) &&
-//                Objects.equals(itemLoc, item.itemLoc)&&
-//                Objects.equals(itemExp, item.itemExp);
-//    }
-//
-//    @Override
-//    public int hashCode(){
-//        return Objects.hash(id, itemName, itemDesc, itemLoc, itemExp);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(id, item.id) &&
+                Objects.equals(itemName, item.itemName) &&
+                Objects.equals(itemDesc, item.itemDesc) &&
+                Objects.equals(itemLoc, item.itemLoc)&&
+                Objects.equals(itemExp, item.itemExp);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, itemName, itemDesc, itemLoc, itemExp);
+    }
 
     public Long getId() {
         return id;
