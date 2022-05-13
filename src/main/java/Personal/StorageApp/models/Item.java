@@ -24,7 +24,6 @@ public class Item {
     private String itemDesc;
 
     @Column
-    @NotNull
     private String itemLoc;
 
     @Column
