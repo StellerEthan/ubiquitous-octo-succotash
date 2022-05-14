@@ -12,22 +12,18 @@ public class Item {
 
     @Id
     @GeneratedValue
-    @Column
     private Long id;
 
-    @Column
     @NotNull
     private String itemName;
 
-    @Column
     @NotNull
     private String itemDesc;
 
-    @Column
     @NotNull
-    private String itemLoc;
+    @ManyToOne
+    private Location itemLoc;
 
-    @Column
     @NotNull
     @Temporal(TemporalType.DATE)
     private Calendar itemExp;
@@ -35,7 +31,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String desc, String itemLoc, Calendar itemExp){
+    public Item(String name, String desc, Location itemLoc, Calendar itemExp){
         this.itemName = name;
         this.itemDesc = desc;
         this.itemLoc = itemLoc;
@@ -77,13 +73,11 @@ public class Item {
         this.itemDesc = itemDesc;
     }
 
-    public String getItemLoc() {
+    public Location getItemLoc() {
         return itemLoc;
     }
 
-    public void setItemLoc(String itemLoc) {
-        this.itemLoc = itemLoc;
-    }
+    public void setItemLoc(Location itemLoc) {this.itemLoc = itemLoc;}
 
     public Calendar getItemExp() {
         return itemExp;
@@ -98,7 +92,7 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", itemDesc='" + itemDesc + '\'' +
-                ", itemLoc='" + itemLoc + '\'' +
+                ", itemLoc='" + itemLoc.getLocName() + '\'' +
                 ", itemExp='" + itemExp + '\'' +
             '}';
     }

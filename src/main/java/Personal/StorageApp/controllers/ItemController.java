@@ -45,7 +45,6 @@ public class ItemController {
         updateItem.setItemDesc(itemDetails.getItemDesc());
         updateItem.setItemLoc(itemDetails.getItemLoc());
         updateItem.setItemExp(itemDetails.getItemExp());
-
         itemRepository.save(updateItem);
 
         return ResponseEntity.ok(updateItem);
