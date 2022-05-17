@@ -26,9 +26,9 @@ public class ItemController {
     }
 
     @PostMapping(consumes = "application/json")
-    public Item createItem(@RequestBody @NotNull Item item, @RequestBody Location location){
+    public Item createItem(@RequestBody @NotNull Item item){
         Item newItem = new Item(item.getItemName(),item.getItemDesc(),item.getItemExp());
-        newItem.setItemLoc(location);
+        newItem.setItemLoc(item.getItemLoc());
         itemRepository.save(newItem);
         return null;
     }
