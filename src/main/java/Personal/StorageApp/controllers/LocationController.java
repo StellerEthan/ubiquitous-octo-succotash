@@ -42,7 +42,6 @@ public class LocationController {
         Location updateLocation = locationRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No location with ID: "+id));
         updateLocation.setLocName(locationDetails.getLocName());
-        updateLocation.setLocDesc(locationDetails.getLocDesc());
         locationRepository.save(updateLocation);
         return ResponseEntity.ok(locationDetails);
     }

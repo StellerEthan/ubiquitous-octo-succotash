@@ -1,7 +1,9 @@
 package Personal.StorageApp;
 
 import Personal.StorageApp.models.Item;
+import Personal.StorageApp.models.Location;
 import Personal.StorageApp.models.data.ItemRepository;
+import Personal.StorageApp.models.data.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,5 +21,8 @@ public class StorageAppApplication {
 
 	@Autowired
 	private ItemRepository itemRepository;
+
+	@Autowired
+	private LocationRepository locationRepository;
 
 }
