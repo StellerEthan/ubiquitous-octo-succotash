@@ -1,7 +1,9 @@
 package Personal.StorageApp.controllers;
 
 import Personal.StorageApp.models.Item;
+import Personal.StorageApp.models.Location;
 import Personal.StorageApp.models.data.ItemRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -24,8 +26,10 @@ public class ItemController {
     }
 
     @PostMapping(consumes = "application/json")
-    public Item createItem(@RequestBody Item item){
-        itemRepository.save(item);
+    public Item createItem(@RequestBody @NotNull Item item, @RequestBody Location location){
+        Item newItem = new Item(item.getItemName(),item.getItemDesc(),item.getItemExp());
+        newItem.setItemLoc(location);
+        itemRepository.save(newItem);
         return null;
     }
 
@@ -38,14 +42,13 @@ public class ItemController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable long id,@RequestBody Item itemDetails){
+    public ResponseEntity<Item> updateItem(@PathVariable long id,@RequestBody @NotNull Item itemDetails){
         Item updateItem = itemRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found with ID: "+id));
         updateItem.setItemName(itemDetails.getItemName());
         updateItem.setItemDesc(itemDetails.getItemDesc());
         updateItem.setItemLoc(itemDetails.getItemLoc());
         updateItem.setItemExp(itemDetails.getItemExp());
-
         itemRepository.save(updateItem);
 
         return ResponseEntity.ok(updateItem);
@@ -59,4 +62,5 @@ public class ItemController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
