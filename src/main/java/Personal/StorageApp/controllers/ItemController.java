@@ -38,7 +38,7 @@ public class ItemController {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Item does not exist with ID: " + id));
-                return ResponseEntity.ok(item);
+            return ResponseEntity.ok(item);
     }
 
     @PutMapping("{id}")
